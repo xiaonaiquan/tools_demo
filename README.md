@@ -5,7 +5,7 @@
 
 
 
-### C++11消息分发器
+### C++11消息工厂
 
-1. message_demo分发消息的demo   :  g++ main.cpp -o main
+1. message_demo消息工厂的demo   :  g++ main.cpp -o main
 
