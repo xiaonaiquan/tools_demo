@@ -4,7 +4,7 @@
 
 int main()
 {
-    std::string pid_file = "/home/naiquan.xiao/ryan/test_daemon/run/xiao_test.pid";
+    std::string pid_file = "xxxxxx.pid";
     if(Daemon::already_running(pid_file.c_str()))
     {
         std::cout << "already running" << std::endl;
