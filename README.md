@@ -38,3 +38,8 @@ hyper_function.hpp是腾讯大佬的优化版本，作用是类似于std :: func
 ### Linux守护进程
 
 静默运行，单一实例
+
+### 对象的安全操作某个函数
+
+使用lock_guard
+
