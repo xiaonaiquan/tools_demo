@@ -43,3 +43,7 @@ hyper_function.hpp是腾讯大佬的优化版本，作用是类似于std :: func
 
 使用lock_guard
 
+### 区间数据的查找
+
+list : [ [1,5],[7,10] ]  找到某个数是在哪个区间
+
