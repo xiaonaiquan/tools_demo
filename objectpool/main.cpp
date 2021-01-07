@@ -5,8 +5,6 @@
 
 using namespace std;
 
-/*std::string ip = "37.111.230.93";	unsigned int ipno = ntohl(inet_addr(ip.c_str()));	cout << ipno << endl;*/
-
 int i = 0;
 
 class Data : public Destroyable
