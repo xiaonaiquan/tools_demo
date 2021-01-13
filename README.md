@@ -37,7 +37,7 @@ hyper_function.hpp是腾讯大佬的优化版本，作用是类似于std :: func
 
 ### Linux守护进程
 
-静默运行，单一实例
+静默运行，单一实例，https://www.cnblogs.com/lvnux/p/12942512.html
 
 ### 对象的安全操作某个函数
 
