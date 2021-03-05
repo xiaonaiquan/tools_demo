@@ -54,3 +54,7 @@ list : [ [1,5],[7,10] ]  找到某个数是在哪个区间
 ### 对struct赋值
 
 利用初始化列表
+
+Status和Slice
+
+这两个是在leveldb中拿出来的，Status实现的很好用啊，实现对返回值的code的封装，Slice是实现了string的功能。
