@@ -70,3 +70,7 @@ Status和Slice
 ### 函数耗时
 
 timelog
+
+### 消息队列
+
+linux下使用系统消息队列
