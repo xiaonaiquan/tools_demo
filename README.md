@@ -73,4 +73,8 @@ timelog
 
 ### 消息队列
 
-linux下使用系统消息队列
+linux下使用系统消息队列-linux-sharedMsg
+
+### Pipe
+
+Windows下Pipe通信（半双工）- pipe （不完善，需要自己添加）
