@@ -78,3 +78,13 @@ linux下使用系统消息队列-linux-sharedMsg
 ### Pipe
 
 Windows下Pipe通信（半双工）- pipe （不完善，需要自己添加）
+
+### Curl_Breakpoint
+
+利用libcurl实现断点续传，检查服务器是否支持断电续传："curl -i --range 0-9 http://www.baidu.com/img/bdlogo.gif",如果支持在返回信息的响应头中能找到Content-Range或者Accept-Ranges。
+
+Accept-Ranges：表明服务器是否支持指定范围请求及哪种类型的分段请求
+
+Content-Range：在整个返回体中本部分的字节位置，因为我们请求的是图片的前10个字节，所以Content-Range的值是bytes 0-9/1575，后面的1575是图片总的字节数。
+
+注：libcurl库未放入此工程，需要自己下载编译
