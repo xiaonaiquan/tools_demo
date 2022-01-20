@@ -21,7 +21,8 @@ CurlDown::CurlDown() : m_FileName("")
 }
 
 
-CurlDown::CurlDown(std::string downUrl, std::string filePath) : m_DownloadUrl(downUrl), m_FilePath(filePath), m_pDelegate(nullptr), dStartTime(0), dLastTime(0), dLastSize(0)
+CurlDown::CurlDown(std::string downUrl, std::string filePath) : m_DownloadUrl(downUrl), m_FilePath(filePath), m_pDelegate(nullptr), dStartTime(0), dLastTime(0), dLastSize(0),
+mHasDownLenth(0)
 {
 
 }
@@ -72,6 +73,10 @@ double CurlDown::getDownloadFileLenth()
 	curl_easy_setopt(handle, CURLOPT_NOBODY, 1L);
 	/* Ask for filetime */
 	curl_easy_setopt(handle, CURLOPT_HEADER, 0L); // 0 不打印日志 1打印日志
+
+	curl_easy_setopt(handle, CURLOPT_SSL_VERIFYPEER, 0L);
+
+	curl_easy_setopt(handle, CURLOPT_SSL_VERIFYHOST, 0L);
 
 	if (curl_easy_perform(handle) == CURLE_OK) {
 		curl_easy_getinfo(handle, CURLINFO_CONTENT_LENGTH_DOWNLOAD, &mFileLenth);
@@ -125,7 +130,7 @@ static int my_progress_func(void *ptr, double totalToDownload, double nowDownloa
 	else
 	{
 		intervalTime = currentTime - curlDown->dLastTime;
-		intervalSize = nowDown - curlDown->dLastSize;
+		intervalSize = nowDownloaded - curlDown->dLastSize;
 	}
 
 	if (intervalTime >= 1000)
@@ -148,7 +153,7 @@ static int my_progress_func(void *ptr, double totalToDownload, double nowDownloa
 	else
 	{
 		// Time remaining
-		leftTime = (totalToDownload - nowDown) / speed;
+		leftTime = (curlDown->mFileLenth - nowDown) / speed;
 	}
 	std::cout << "leftTime:" << leftTime << std::endl;
 	if (curlDown->m_pDelegate)
@@ -184,7 +189,7 @@ bool CurlDown::Download()
 
 	// 读取本地文件下载大小
 	long long localFileLenth = getLocalFileLength(); //已经下载的大小
-
+	mHasDownLenth = localFileLenth;
 	CURL *handle = curl_easy_init();
 	std::string packageUrl = m_DownloadUrl; //下载地址+下载文件名
 	curl_easy_setopt(handle, CURLOPT_URL, packageUrl.c_str()); // http://curl.haxx.se/libcurl/c/fopen.html
@@ -196,6 +201,7 @@ bool CurlDown::Download()
 	curl_easy_setopt(handle, CURLOPT_NOPROGRESS, 0L);
 	curl_easy_setopt(handle, CURLOPT_PROGRESSFUNCTION, my_progress_func); //下载进度回调方法
 	curl_easy_setopt(handle, CURLOPT_PROGRESSDATA, this); // 传入本类对象
+	curl_easy_setopt(handle, CURLOPT_SSL_VERIFYPEER, 0L); //不验证ssl
 
 	timeb now2;
 	ftime(&now2);

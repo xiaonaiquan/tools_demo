@@ -24,6 +24,8 @@ public:
 	std::string m_FilePath; // 本地存储地址
 
 	double mFileLenth; // 下载文件大小
+	long long mHasDownLenth;
+
 	long timeout; // 请求超时时间 为了测试用 设置超时时间为2秒 如果是发正式版本 改为20秒超时时间
 	bool Download(); // 下载方法
 	double getDownloadFileLenth(); // 下载文件大小方法
